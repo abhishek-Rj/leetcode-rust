@@ -9,6 +9,7 @@ mod zig_zag6;
 mod container11;
 mod sqrt69;
 mod binarySearch;
+mod repeating_character;
 // use sum_zero::Solution;
 // use maximum_bucket::Solution2;
 // use add_two_number2::Solution;
@@ -20,9 +21,14 @@ mod binarySearch;
 use rand::Rng;
 use sqrt69::Solution;
 use binarySearch::Binary;
+use repeating_character::RepeatingCharacter;
 
 fn main() {
-    // let list = vec![1,8,6,2,5,4,8,3,7];
+
+    let list = vec![1,2,3,4,5,6,7,8];
+    let mut start = 0;
+    let mut end = ( list.len() - 1 ) as i32;
+    println!("{:?}",Binary::binary_search(&list, 7, &mut start, &mut end));
     // println!("{:?}", Solution::max_area(list));
     // let s = String::from("PAHNAPLSIIGYIR");
     // Solution::convert(s, 4);
