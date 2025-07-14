@@ -1,5 +1,4 @@
 pub struct Solution {}
-//solves 1094 of 1095 testcases
 impl Solution {
     pub fn my_atoi(s: String) -> i32 {
         let mut new_string = s.trim().to_string();
@@ -49,7 +48,10 @@ impl Solution {
             } else if ans * is_negative < i32::MIN as i64 {
                 return i32::MIN
             }
-            digit = digit * 10;
+            digit = match digit.checked_mul(10) {
+                Some(d) => d,
+                None => return if is_negative == 1 { i32::MAX } else { i32::MIN },
+            };
         }
         let result = ans * is_negative;
         println!("{:?}", result);
