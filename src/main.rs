@@ -13,6 +13,7 @@ mod repeating_character;
 mod string_to_atoi8;
 mod regular_expression10;
 mod valid_anagram242;
+mod unique_character387;
 // use sum_zero::Solution;
 // use maximum_bucket::Solution2;
 // use add_two_number2::Solution;
@@ -24,15 +25,15 @@ mod valid_anagram242;
 // use rand::Rng;
 // use string_to_atoi8::Solution;
 // use regular_expression10::Solution;
-use valid_anagram242::Solution;
+// use valid_anagram242::Solution;
+use unique_character387::Solution;
 // use sqrt69::Solution;
 // use binarySearch::Binary;
 // use repeating_character::RepeatingCharacter;
 
 fn main() {
     let s = String::from("rat");
-    let p = String::from("car");
-    println!("{:?}", Solution::is_anagram(s, p));
+    println!("{:?}", Solution::first_uniq_char(s));
     // let s = 1;
     // println!("{:?}", Solution::my_sqrt(s));
     // let list = vec![1,2,3,4,5,6,7,8];
