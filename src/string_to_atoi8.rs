@@ -1,49 +1,58 @@
 pub struct Solution {}
-
+//solves 1094 of 1095 testcases
 impl Solution {
     pub fn my_atoi(s: String) -> i32 {
-        let mut list: Vec<char> = s.chars().collect();
+        let mut new_string = s.trim().to_string();
         let ascii_number_list: Vec<i32> = vec![48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59];
-        while list[0] == ' ' {
-            list.remove(0);
+        let mut is_negative = 1;
+        if new_string.is_empty() {
+            return 0;
         }
-        let min: i64 = -2147483648;
-        let max: i64 = 2147483647;
-        let mut ans: Vec<i32> = vec![];
-        let mut ans_num: i64  = 0;
-        let mut if_negative = 1;
-        let mut count = 0;
-        for i in 0..list.len() {
-            let chr = list[i];
-            if i != 0 && !ascii_number_list.contains(&(chr as i32)) {
+        if let Some(b) = new_string.chars().nth(0) {
+            if b == '-' {
+                is_negative = -1;
+                new_string.remove(0);
+            }
+            if b == '+' {
+                new_string.remove(0);
+            }
+        } 
+        if new_string.is_empty() {
+            return 0;
+        }
+        for (index, char) in new_string.chars().enumerate() {
+            let ascii_val = char as i32;
+            if !ascii_number_list.contains(&ascii_val) {
+                new_string = new_string[0..index].to_string();
                 break;
             }
-            if i == count && chr == '-'{
-                if_negative = -1;
-                continue;
-            } 
-            if chr == ' ' {
-                count += 1;
-                continue;
-            }
-            if ascii_number_list.contains(&(chr as i32)) {
-                ans.push(chr as i32 - 48);
-            }
         }
-        println!("{:?}", ans);
-        let mut digit: i64= 1;
-        for &i in ans.iter().rev() {
-            ans_num = i as i64 * digit as i64 + ans_num;
-            digit *= 10;
+        if new_string.is_empty() {
+            return 0
+        }
+        println!("{:?}", new_string);
+        let mut char_vec: Vec<char> = new_string.chars().collect();
+        if char_vec.is_empty() {
+            return 0;
         } 
-        ans_num = ans_num * if_negative;
-        if max < ans_num {
-            return max as i32;
-        } else if min > ans_num {
-            return min as i32;
-        } else {
-            ans_num as i32
+        while !char_vec.is_empty() && char_vec[0] == '0' {
+            char_vec.remove(0);
         }
-        
+        println!("{:?}", char_vec);
+        let mut digit: i64 = 1;
+        let mut ans: i64 = 0;
+        for i in char_vec.iter().rev() {
+            let char_value = *i as i32 - 48;
+            ans = char_value as i64 * digit + ans;
+            if ans * is_negative > i32::MAX as i64 {
+                return i32::MAX
+            } else if ans * is_negative < i32::MIN as i64 {
+                return i32::MIN
+            }
+            digit = digit * 10;
+        }
+        let result = ans * is_negative;
+        println!("{:?}", result);
+        result as i32
     }
 }
