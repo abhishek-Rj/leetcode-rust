@@ -14,6 +14,7 @@ mod string_to_atoi8;
 mod regular_expression10;
 mod valid_anagram242;
 mod unique_character387;
+mod goat_latin824;
 // use sum_zero::Solution;
 // use maximum_bucket::Solution2;
 // use add_two_number2::Solution;
@@ -26,14 +27,15 @@ mod unique_character387;
 // use string_to_atoi8::Solution;
 // use regular_expression10::Solution;
 // use valid_anagram242::Solution;
-use unique_character387::Solution;
+// use unique_character387::Solution;
+use goat_latin824::Solution;
 // use sqrt69::Solution;
 // use binarySearch::Binary;
 // use repeating_character::RepeatingCharacter;
 
 fn main() {
-    let s = String::from("leetcode");
-    println!("{:?}", Solution::first_uniq_char(s));
+    let s = String::from("The quick brown fox jumped over the lazy dog");
+    println!("{:?}", Solution::to_goat_latin(s));
     // let s = 1;
     // println!("{:?}", Solution::my_sqrt(s));
     // let list = vec![1,2,3,4,5,6,7,8];
