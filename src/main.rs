@@ -32,7 +32,7 @@ use unique_character387::Solution;
 // use repeating_character::RepeatingCharacter;
 
 fn main() {
-    let s = String::from("rat");
+    let s = String::from("leetcode");
     println!("{:?}", Solution::first_uniq_char(s));
     // let s = 1;
     // println!("{:?}", Solution::my_sqrt(s));
